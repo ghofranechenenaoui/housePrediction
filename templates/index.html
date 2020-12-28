@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='image/ne.jfif') }}" type="image/x-icon">
+
+  <title>NEOPOLIS</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+</head>
+
+<body>
+  <div class="login">
+   <h1>Estimation De Bien</h1>
+      <form action="{{ url_for('predict')}}"   method="post">
+         <input type="text" name="surface"    placeholder="Surface batie du bien (ne dépasse pas les 200 m²)" required="required" />
+         <input type="number" name="nbr_pieces" placeholder="Nombre des pieces principales avec salon" required="required" />
+         <input type="text" name="langitude"  placeholder="Longitude" required="required" />
+         <input type="text" name="latitude"   placeholder="Latitude" required="required" />
+         <button type="submit" class="btn btn-primary btn-block btn-large">Valider</button>
+     </form>
+
+  <br>
+  <h4 style="color:green;"> {{ prediction_text }}</h4> 
+ 
+  {% with messages =get_flashed_messages() %}
+        {% if messages %}
+
+          {% for message in messages %}
+          <div class="isa_warning">
+
+          <h5 style="color:red;">{{message}}</h5>
+          </div>
+          {% endfor  %}
+        {% endif  %}
+     {% endwith %}  
+</div>
+
+ 
+ 
+ </body>
+</html>
